@@ -55,6 +55,14 @@ class PromptBuilder:
             "Your goal is to generate realistic, confusing, multi-intent questions that "
             "a real farmer might ask. These questions should be challenging for intent "
             "classification systems to categorize correctly.\n\n"
+            "CRITICAL — FARMER PERSPECTIVE:\n"
+            "- Write every question as if a small/marginal farmer is speaking to an advisor.\n"
+            "- The farmer is less knowledgeable — they describe what they SEE, not textbook terms.\n"
+            "- NEVER use scientific names, complex agricultural jargon, or technical terminology.\n"
+            "- Use simple, everyday language: 'my leaves are turning yellow', 'bugs on my crop', "
+            "'when to put fertilizer', 'is there any scheme for bore well'.\n"
+            "- Questions must be grounded in real situations — real worries about crops, weather, "
+            "money, schemes, pests, water, and market prices.\n\n"
         )
         
         if persona:
@@ -134,6 +142,28 @@ class PromptBuilder:
         sections.append("- Questions must be realistic — something a farmer would actually ask")
         sections.append("- Questions must be answerable by an agricultural chatbot")
         sections.append("- Questions should test edge cases of intent classification")
+
+        # ── Section: Language & Perspective Guidelines ────────────────────
+        sections.append("\n## LANGUAGE & PERSPECTIVE GUIDELINES\n")
+        sections.append(
+            "Every question must sound like it comes from a real farmer — someone who is "
+            "less knowledgeable, describes problems in simple words, and needs practical help.\n"
+        )
+        sections.append("**DO use (farmer-friendly):**")
+        sections.append('- "My cotton leaves are curling and turning brown, some bugs are there, '
+                        'and I also want to know about any government help for bore well"')
+        sections.append('- "When should I sell my soybean — prices are low now but I also '
+                        'need to start preparing for rabi season"')
+        sections.append('- "My rice field has some white insects flying around and the '
+                        'crop is not growing properly, also when is the next rain coming"')
+        sections.append("")
+        sections.append("**DO NOT use (too technical/artificial):**")
+        sections.append('- "What integrated pest management strategies exist for Spodoptera '
+                        'frugiperda infestation in Zea mays during kharif season?"')
+        sections.append('- "How does the interaction between Xanthomonas oryzae and '
+                        'nitrogen fertigation impact yield parameters?"')
+        sections.append('- "Kindly advise on phytosanitary measures for the management '
+                        'of thrips population dynamics in Allium cepa"')
 
         # ── Section 4: Confusion Techniques ──────────────────────────────
         techniques = self.CONFUSION_TECHNIQUES.get(difficulty, self.CONFUSION_TECHNIQUES["hard"])

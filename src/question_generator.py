@@ -13,6 +13,7 @@ from pydantic_ai import Agent
 from .intent_manager import IntentManager
 from .similarity_checker import SimilarityChecker
 from .prompt_builder import PromptBuilder
+from .quality_verifier import QualityVerifier
 from .agent import PipelineDeps
 from .config import Config
 
@@ -39,6 +40,7 @@ class QuestionGenerator:
         agent: Agent,
         deps: PipelineDeps,
         config: Config,
+        quality_verifier: Optional[QualityVerifier] = None,
     ):
         self.intent_manager = intent_manager
         self.similarity_checker = similarity_checker
@@ -46,9 +48,11 @@ class QuestionGenerator:
         self.agent = agent
         self.deps = deps
         self.config = config
+        self.quality_verifier = quality_verifier
 
         self._total_generated = 0
         self._total_rejected_duplicates = 0
+        self._total_rejected_quality = 0
         self._last_provider = None
         self._last_model = None
 
@@ -109,15 +113,21 @@ class QuestionGenerator:
         # 5. Validate and deduplicate
         validated = self._validate_and_deduplicate(raw_questions, intent_mix, difficulty)
 
-        # 6. Record intents used
+        # 6. Quality verification — remove artificial/unnatural questions
+        if self.quality_verifier and validated:
+            pre_verify_count = len(validated)
+            validated = self.quality_verifier.verify_batch(validated, self.deps)
+            self._total_rejected_quality += (pre_verify_count - len(validated))
+
+        # 7. Record intents used
         for q in validated:
             self.intent_manager.record_generation(q["intents"])
 
         self._total_generated += len(validated)
         logger.info(
-            "Batch complete: %d/%d accepted (total: %d, dupes rejected: %d) via %s/%s",
+            "Batch complete: %d/%d accepted (total: %d, dupes: %d, quality: %d) via %s/%s",
             len(validated), len(raw_questions), self._total_generated,
-            self._total_rejected_duplicates,
+            self._total_rejected_duplicates, self._total_rejected_quality,
             self._last_provider or "?", self._last_model or "?",
         )
 
@@ -250,12 +260,17 @@ class QuestionGenerator:
     @property
     def stats(self) -> Dict:
         """Return generation statistics."""
+        total_rejected = self._total_rejected_duplicates + self._total_rejected_quality
         return {
             "total_generated": self._total_generated,
             "total_rejected_duplicates": self._total_rejected_duplicates,
+            "total_rejected_quality": self._total_rejected_quality,
             "acceptance_rate": (
-                self._total_generated / max(1, self._total_generated + self._total_rejected_duplicates)
+                self._total_generated / max(1, self._total_generated + total_rejected)
             ),
             "last_provider": self._last_provider,
             "last_model": self._last_model,
+            "quality_verifier_stats": (
+                self.quality_verifier.stats if self.quality_verifier else None
+            ),
         }

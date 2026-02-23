@@ -47,6 +47,7 @@ class PipelineDeps:
     prompt_builder: object       # PromptBuilder instance
     config: Config
     mongo_store: Optional[object] = None  # MongoStore instance (optional)
+    quality_verifier: Optional[object] = None  # QualityVerifier instance (optional)
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -147,6 +148,25 @@ def create_agent(config: Config) -> Agent:
             "Your goal is to generate realistic, confusing, multi-intent questions that "
             "a real farmer might ask. These questions should be challenging for intent "
             "classification systems to categorize correctly.\n\n"
+            "CRITICAL GUIDELINES — FARMER PERSPECTIVE & GROUNDED QUERIES:\n"
+            "1. GROUNDED IN REALITY: Every question must come from a real farming "
+            "situation — a farmer who is genuinely worried about their crop, confused "
+            "about a scheme, or needs practical advice. Never generate hypothetical "
+            "or academic-sounding questions.\n"
+            "2. FARMER'S VOICE: Write from the perspective of a less knowledgeable, "
+            "small or marginal farmer talking to an advisor. They don't know technical "
+            "terms — they describe problems in their own simple words.\n"
+            "3. NO COMPLEX TERMS: NEVER use scientific names (e.g. avoid 'Spodoptera "
+            "frugiperda', 'Xanthomonas oryzae', 'Helicoverpa armigera'). Use common "
+            "names instead (e.g. 'fall armyworm', 'leaf blight', 'bollworm'). Avoid "
+            "jargon like 'integrated pest management', 'phytosanitary', 'fertigation'.\n"
+            "4. SIMPLE LANGUAGE: Use everyday words a farmer would use — 'my crop is "
+            "turning yellow', 'bugs are eating my cotton', 'when should I spray', "
+            "'how much urea to put'. The farmer describes what they SEE, not what "
+            "the textbook says.\n"
+            "5. PRACTICAL CONCERNS: Focus on real worries — crop damage, market prices, "
+            "weather impact, scheme eligibility, storage problems, water shortage, "
+            "which fertilizer to use, when to harvest.\n\n"
             "IMPORTANT: Generate all questions in ENGLISH only.\n\n"
             "When asked to generate questions, respond with a JSON array. Each element "
             "must be an object with these fields:\n"

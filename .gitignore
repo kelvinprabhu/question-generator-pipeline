@@ -36,5 +36,7 @@ pip-delete-this-directory.txt
 # Project specific
 outputs/
 logs/
-data/
 *.db
+generation.log
+
+outputs

@@ -48,7 +48,7 @@ class Config:
     GROQ_MODEL = "llama-3.3-70b-versatile"          # Groq model
     GEMINI_MODEL = "gemini-2.5-flash"               # Google Gemini model
     HF_MODEL = "Qwen/Qwen3-32B"  # HuggingFace model
-    OPENROUTER_MODEL = "arcee-ai/trinity-large-preview:free"
+    OPENROUTER_MODEL = "stepfun/step-3.5-flash:free"
 
     # Provider priority order (tried in this sequence)
     PROVIDER_PRIORITY = ["groq", "gemini", "huggingface", "openrouter"]

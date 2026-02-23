@@ -1,0 +1,198 @@
+[
+  {
+    "id": 0,
+    "name": "Weather Forecast",
+    "primary_intent": "Short-term local weather prediction",
+    "key_signals": ["weather forecast", "next 5 days", "weather prediction", "local area weather"],
+    "description": "Users asking for near-term weather forecasts, typically limited to the next five days, often scoped to their local area. Routes to weather API or meteorological data service."
+  },
+  {
+    "id": 1,
+    "name": "Crop Cultivation Guidance",
+    "primary_intent": "How to cultivate a specific crop",
+    "key_signals": ["cultivation", "sowing", "how to grow", "planting methods"],
+    "description": "Queries focus on cultivation practices such as sowing methods, preparation steps, and best practices for crops. Expect agronomic guidance rather than numeric data."
+  },
+  {
+    "id": 2,
+    "name": "Input Cost and Fertilizer Queries",
+    "primary_intent": "Fertilizer usage and related costs",
+    "key_signals": ["fertilizer", "cost", "price", "input cost", "how much fertilizer"],
+    "description": "Mixes fertilizer recommendations with price-related mentions. The overlap is driven by short queries that combine cost and usage."
+  },
+  {
+    "id": 3,
+    "name": "Pest and Disease Control",
+    "primary_intent": "Pest control and spraying advice",
+    "key_signals": ["pest", "disease", "spraying", "insecticide", "pest management"],
+    "description": "Users ask about pests, diseases, and spraying solutions for crops including pulses and flowers. Aligns with pesticide recommendations and integrated pest management."
+  },
+  {
+    "id": 4,
+    "name": "General Market Price",
+    "primary_intent": "Average prices and general costs",
+    "key_signals": ["average price", "general cost", "market rate", "typical price"],
+    "description": "Queries seek typical or average prices rather than real-time or location-specific values. Suitable for historical averages or explanatory responses."
+  },
+  {
+    "id": 5,
+    "name": "Location-specific Queries",
+    "primary_intent": "District or taluka-specific information",
+    "key_signals": ["district", "taluka", "region", "local area", "specific location"],
+    "description": "Questions scoped to specific districts or sub-districts, often combining location with prices or cultivation queries. Location extraction is critical."
+  },
+  {
+    "id": 6,
+    "name": "Livestock Disease Mastitis",
+    "primary_intent": "Diagnosis and treatment of mastitis",
+    "key_signals": ["mastitis", "udder inflammation", "cattle disease", "buffalo disease", "treatment"],
+    "description": "Focused on mastitis in cattle and buffaloes. Should route to veterinary health guidance and treatment protocols."
+  },
+  {
+    "id": 7,
+    "name": "Timing and Scheduling",
+    "primary_intent": "When to perform an agricultural activity",
+    "key_signals": ["right time", "when to", "best time", "schedule", "timing"],
+    "description": "Users asking about the correct timing for activities such as planting, spraying, or other farm operations. Temporal rather than procedural."
+  },
+  {
+    "id": 8,
+    "name": "Sunlight and Shade Requirements",
+    "primary_intent": "Light requirements of plants and flowers",
+    "key_signals": ["sunlight", "shade", "light requirement", "sun exposure"],
+    "description": "Queries about whether plants require shade or sunlight, especially for ornamental flowers. Suitable for horticulture knowledge bases."
+  },
+  {
+    "id": 9,
+    "name": "Irrigation and Water Management",
+    "primary_intent": "When and how much water to give",
+    "key_signals": ["water", "irrigation", "drip", "watering schedule", "how much water"],
+    "description": "Strong irrigation-focused intent covering frequency, quantity, and irrigation methods such as drip systems."
+  },
+  {
+    "id": 10,
+    "name": "Price Trend and Future Expectation",
+    "primary_intent": "Price increase or decrease speculation",
+    "key_signals": ["price increase", "price trend", "will prices rise", "market forecast"],
+    "description": "Users asking whether prices will rise or fall and when. Predictive/speculative and distinct from current price lookups."
+  },
+  {
+    "id": 11,
+    "name": "Dairy and Livestock Productivity",
+    "primary_intent": "Milk production and animal nutrition",
+    "key_signals": ["milk", "dairy", "cattle feed", "milk yield", "animal nutrition"],
+    "description": "Questions focus on increasing milk yield, feed, and general dairy management. Suitable for livestock productivity advice."
+  },
+  {
+    "id": 12,
+    "name": "Romanized Queries",
+    "primary_intent": "Market price queries in Romanized script",
+    "key_signals": ["romanized price query", "transliterated query", "informal script"],
+    "description": "Mirrors market-price intents but written in Romanized script. Normalization or transliteration can merge with standard price clusters."
+  },
+  {
+    "id": 13,
+    "name": "Crop-specific Market Price",
+    "primary_intent": "Crop-wise market prices",
+    "key_signals": ["market price", "soybean price", "cotton price", "crop rate", "mandi price"],
+    "description": "Clear intent for checking prices of specific crops in agricultural markets. Ideal for live mandi/market integrations."
+  },
+  {
+    "id": 14,
+    "name": "Application and Documentation",
+    "primary_intent": "How to apply and required documents",
+    "key_signals": ["application", "documents required", "how to apply", "online application", "form"],
+    "description": "Users seek information on application processes, document requirements, and application status for government schemes."
+  },
+  {
+    "id": 15,
+    "name": "Agricultural Subsidies General",
+    "primary_intent": "Subsidy eligibility and benefits",
+    "key_signals": ["subsidy", "government scheme", "financial aid", "grant eligibility"],
+    "description": "Queries about subsidies for farming, machinery, and soil/health schemes. Often overlaps with government programs."
+  },
+  {
+    "id": 16,
+    "name": "Weed Control Methods",
+    "primary_intent": "Weed management techniques",
+    "key_signals": ["weed control", "weed management", "herbicide", "weed removal"],
+    "description": "Focused on identifying and comparing weed control methods. Suitable for agronomy best-practice content."
+  },
+  {
+    "id": 17,
+    "name": "Location-specific Spraying Advice",
+    "primary_intent": "Spray recommendations by region and crop",
+    "key_signals": ["spraying advice", "regional spray", "crop spray schedule", "local recommendation"],
+    "description": "Combines spraying advice with crop and location context, implying localized recommendations."
+  },
+  {
+    "id": 18,
+    "name": "Conversational Acknowledgements",
+    "primary_intent": "Non-informational or conversational",
+    "key_signals": ["yes", "ok", "acknowledgement", "location name only"],
+    "description": "Not a knowledge intent. Consists of acknowledgements and location mentions. Should be handled by a fallback conversational handler."
+  },
+  {
+    "id": 19,
+    "name": "Care and Preventive Measures",
+    "primary_intent": "How to take care and precautions",
+    "key_signals": ["care", "precaution", "newborn care", "preventive measures", "protection"],
+    "description": "Users ask about preventive care, especially for newborn animals or crops. Often overlaps with health and safety guidance."
+  },
+  {
+    "id": 20,
+    "name": "Todays Market Price",
+    "primary_intent": "Current day prices by location",
+    "key_signals": ["today's price", "current price", "live rate", "today market"],
+    "description": "Focused on today's prices, often with city or district context. Distinct from average or future price intents."
+  },
+  {
+    "id": 21,
+    "name": "Ideal Irrigation Schedules",
+    "primary_intent": "Optimal irrigation planning",
+    "key_signals": ["ideal irrigation", "irrigation schedule", "watering plan", "optimal water"],
+    "description": "More structured than general irrigation queries, these ask for ideal or recommended irrigation schedules, sometimes crop-specific."
+  },
+  {
+    "id": 22,
+    "name": "Weather Conditions and Seasonal Effects",
+    "primary_intent": "Rain, temperature, and seasonal impact",
+    "key_signals": ["rain", "temperature", "cold", "summer", "seasonal effect"],
+    "description": "Broader weather-related questions focusing on conditions and their impact rather than short-term forecasts."
+  },
+  {
+    "id": 23,
+    "name": "Fertilizer Application Methods",
+    "primary_intent": "How to apply fertilizers",
+    "key_signals": ["fertilizer application", "how to apply", "method", "dosage"],
+    "description": "Users asking about fertilizer application techniques, equipment, and methods."
+  },
+  {
+    "id": 24,
+    "name": "Machinery Subsidies and Schemes",
+    "primary_intent": "Subsidies for farm machinery",
+    "key_signals": ["machinery subsidy", "tractor subsidy", "PM Kisan", "equipment grant"],
+    "description": "A more specific subsidy cluster focusing on machinery and government programs. Sub-intent of general subsidies."
+  },
+  {
+    "id": 25,
+    "name": "Low-signal Fragmented Queries",
+    "primary_intent": "Weak or incomplete queries",
+    "key_signals": ["yes", "place name", "incomplete", "fragmented"],
+    "description": "Low semantic density cluster. Queries lack sufficient intent and should be handled via clarification prompts."
+  },
+  {
+    "id": 26,
+    "name": "Agro-chemicals and Pesticides",
+    "primary_intent": "Chemical recommendations",
+    "key_signals": ["medicine", "insecticide", "fungicide", "herbicide", "chemical"],
+    "description": "Strong intent for chemical usage, including pesticides, fungicides, and herbicides."
+  },
+  {
+    "id": 27,
+    "name": "Seeds and Input Sourcing",
+    "primary_intent": "Where to buy seeds and inputs",
+    "key_signals": ["seeds", "where to buy", "availability", "sourcing", "input supply"],
+    "description": "Queries about availability and sourcing of seeds and related inputs, sometimes mixed with price mentions."
+  }
+]
